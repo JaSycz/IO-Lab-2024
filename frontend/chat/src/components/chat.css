@@ -1,0 +1,6 @@
+.image {
+    background-image: url('bg.webp');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+  }
