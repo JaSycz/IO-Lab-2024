@@ -15,12 +15,15 @@ export default function Chat(){
     
     const sendPostRequest = async () => {
         try {
-          const response = await axios.post('https:localhost:5137/', {
-            changeValue
+          const prompt = changeValue
+          const response = await axios.post('http://localhost:5000/', {
+            prompt
           });
+          console.log(data)
+          console.log(response)
           setData(response.data);
         } catch (err) {
-          console.log(err.message);
+          console.log(err);
         }
       };
 

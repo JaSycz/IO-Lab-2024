@@ -4,7 +4,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins="https://localhost:5137", methods=["GET","POST"])
+CORS(app, origins="http://localhost:5173", methods=["GET","POST"])
 
 
 
@@ -13,7 +13,7 @@ CORS(app, origins="https://localhost:5137", methods=["GET","POST"])
 def query_view():
   if request.method == 'POST':
   
-    prompt = request.form['prompt']
+    prompt = request.json["prompt"]
     response = get_completion(prompt)
     return response
   
