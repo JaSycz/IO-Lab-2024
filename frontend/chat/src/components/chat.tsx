@@ -50,7 +50,11 @@ export default function Chat(){
         
       useEffect(()=> {
         setChangeValue(transcript)
-      },[listening,interimTranscript])
+      },[listening, interimTranscript])
+
+      
+
+
     return(
         <div className="flex items-center justify-center w-full h-screen image">
             {/* chat window */}
@@ -72,7 +76,7 @@ export default function Chat(){
                             <IoIosSend className="duration-500 ease-in-out hover:rotate-45 hover:scale-110 text-[#333647]" size={40}/>
                         </div>
                         <div className="grid w-full row-span-1" onClick={handleMicClick}>
-                            <CiMicrophoneOn className="duration-500 ease-in-out hover:scale-110 text-[#333647]" size={40}/> 
+                            <CiMicrophoneOn color={listening ? "green" : "red"} className="duration-500 ease-in-out hover:scale-110 text-[#333647]" size={40}/> 
                         </div>
                     </div>
                     
