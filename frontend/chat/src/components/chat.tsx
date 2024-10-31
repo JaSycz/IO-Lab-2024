@@ -1,9 +1,10 @@
-import { useState } from "react";
+import "regenerator-runtime";
+import { useState, useEffect } from "react";
 import { CiMicrophoneOn } from "react-icons/ci";    
 import { IoIosSend } from "react-icons/io";
 import './chat.css'
 import axios from "axios";
-
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export default function Chat(){
 
@@ -28,8 +29,28 @@ export default function Chat(){
         setPrompt(changeValue);
         sendPostRequest();
       }
-    
 
+
+
+      const {
+        listening,
+        transcript,
+        interimTranscript,
+        browserSupportsSpeechRecognition} = useSpeechRecognition();
+
+      const handleMicClick =  () => {
+        if (!browserSupportsSpeechRecognition){
+          setChangeValue("Change Browser!")
+        } 
+        else{
+        SpeechRecognition.startListening();
+        }
+
+      }
+        
+      useEffect(()=> {
+        setChangeValue(transcript)
+      },[listening,interimTranscript])
     return(
         <div className="flex items-center justify-center w-full h-screen image">
             {/* chat window */}
@@ -45,13 +66,13 @@ export default function Chat(){
                 </div>
                 {/* input area */}
                 <div className="p-1 my-2 h-[50px] self-center w-[90%] rounded-2xl border-2 border-[#fae134] flex  justify-between">
-                    <textarea className="bg-transparent p-[1px] outline-none w-[80%] h-full rounded-l-2xl" placeholder="Wpisz pytanie tutaj" onChange={e => setChangeValue(e.target.value)}/>
+                    <textarea className="bg-transparent p-[1px] outline-none w-[80%] h-full rounded-l-2xl" placeholder="Wpisz pytanie tutaj" onChange={e => setChangeValue(e.target.value)} value={changeValue}/>
                     <div className="grid justify-end grid-cols-2 w-fit">
                         <div className="grid w-full row-span-1" onClick={handleSendClick}>
                             <IoIosSend className="duration-500 ease-in-out hover:rotate-45 hover:scale-110 text-[#333647]" size={40}/>
                         </div>
-                        <div className="grid w-full row-span-1">
-                            <CiMicrophoneOn className="duration-500 ease-in-out hover:scale-110 text-[#333647]" size={40}/>
+                        <div className="grid w-full row-span-1" onClick={handleMicClick}>
+                            <CiMicrophoneOn className="duration-500 ease-in-out hover:scale-110 text-[#333647]" size={40}/> 
                         </div>
                     </div>
                     
