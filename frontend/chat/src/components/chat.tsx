@@ -2,6 +2,7 @@ import "regenerator-runtime";
 import { useState, useEffect } from "react";
 import { CiMicrophoneOn } from "react-icons/ci";    
 import { IoIosSend } from "react-icons/io";
+import TalkingSun from "./TalkingSun";
 import './chat.css'
 import axios from "axios";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
@@ -68,8 +69,8 @@ export default function Chat(){
                 <div className=" h-[40px] bg-[#f532d5] w-full rounded-tl-xl rounded-tr-xl border-b-2 border-[#333647]">
                 </div>
                 {/* big glowa strefa */}
-                <div className=" w-[80%] h-full my-[10px] bg-[#333647] flex self-center">
-
+                <div className=" w-[70%] h-full my-[10px] bg-[rgba(163,204,198,255)]  self-center">
+                    <TalkingSun isSpeechInputMode={isSpeechInputMode}/>
                 </div>
                 {/* input area */}
                 <div className="p-1 my-2 h-[50px] self-center w-[90%] rounded-2xl border-2 border-[#fae134] flex  justify-between">
