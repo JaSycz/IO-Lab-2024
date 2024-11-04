@@ -12,10 +12,13 @@ src={SunTalking}
 autoPlay 
 loop 
 className="w-[70%] h-fit" 
+preload="auto"
 muted // Muted for autoplay
+controls
 />
 
 const TalkingSun: React.FC<TalkingSunProps> = ({ isSpeechInputMode }) => {
+  console.log("isSpeechInputMode:", isSpeechInputMode); // Debugowanie
   return (
     <div className='justify-center items-center flex center' >
       {!isSpeechInputMode ? image : video}

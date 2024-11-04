@@ -23,17 +23,36 @@ export default function Chat(){
           console.log(data)
           console.log(response)
           setData(response.data);
+          speak(response.data) //wywolanie mowy
+
         } catch (err) {
           console.log(err);
-        }
+        } 
       };
 
       
       const handleSendClick = () => {
         setPrompt(changeValue);
         sendPostRequest();
+        setChangeValue("");
       }
 
+      const speak = (text:string) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "pl-PL";
+        
+        // Ustawienie isSpeechInputMode na true przed rozpoczęciem mowy
+        setIsSpeechInputMode(true);
+    
+        // ustawi isSpeechInputMode na false po zakończeniu mowy
+        utterance.onend = () => {
+        setIsSpeechInputMode(false);
+        };
+        
+
+        window.speechSynthesis.speak(utterance);        
+    };
+    
 
 
       const {
@@ -63,7 +82,7 @@ export default function Chat(){
         <div className="flex items-center justify-center w-full h-screen image">
             {/* chat window */}
             <div>
-                {data}
+                {data }
             </div>
             <div className="w-[60%] h-[80%] bg-wite rounded-2xl flex flex-col justify-center items-end border-2 border-[#333647] z-20 bg-white">
                 <div className=" h-[40px] bg-[#f532d5] w-full rounded-tl-xl rounded-tr-xl border-b-2 border-[#333647]">

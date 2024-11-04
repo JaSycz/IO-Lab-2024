@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from api_ai import get_completion
 import json
 from flask_cors import CORS
