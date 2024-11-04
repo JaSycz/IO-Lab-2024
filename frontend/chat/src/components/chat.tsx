@@ -66,7 +66,10 @@ export default function Chat(){
           setChangeValue("Change Browser!")
         } 
         else{
-        SpeechRecognition.startListening();
+          const options = {
+            language: 'pl-PL', // Ustaw język na polski
+          };
+        SpeechRecognition.startListening(options);
         }
 
       }
