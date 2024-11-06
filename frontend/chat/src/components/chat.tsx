@@ -84,11 +84,11 @@ export default function Chat(){
     return(
         <div className="flex items-center justify-center w-full h-screen image">
             {/* chat window */}
-            <div>
-                {data }
-            </div>
             <div className="w-[60%] h-[80%] bg-wite rounded-2xl flex flex-col justify-center items-end border-2 border-[#333647] z-20 bg-white">
-                <div className=" h-[40px] bg-[#f532d5] w-full rounded-tl-xl rounded-tr-xl border-b-2 border-[#333647]">
+                <div className=" h-[40px] bg-[#f532d5] w-full rounded-tl-xl rounded-tr-xl border-b-2 border-[#333647] flex items-center justify-center">
+                  <div>
+                    {data}
+                  </div>
                 </div>
                 {/* big glowa strefa */}
                 <div className=" w-[70%] h-full my-[10px] bg-[rgba(163,204,198,255)]  self-center">
